@@ -1,23 +1,42 @@
 <div>
 	<h1>Facebook</h1>
 	<div id="fb-root"></div>
-	<!-- <div id="fblogin" class="fb-login-button" data-max-rows="1" data-show-faces="false"></div>
+	<!-- <div class="fb-login-button" data-max-rows="1" data-show-faces="false"></div>
 	<script>
-		( function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id))
-					return;
-				js = d.createElement(s);
-				js.id = id;
-				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=190820977620574";
-				fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));
-	</script> -->	
-	<input id="fblogin" type="button" value="Login" />
+	( function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id))
+	return;
+	js = d.createElement(s);
+	js.id = id;
+	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=190820977620574";
+	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script> -->
+
+	<script src="http://connect.facebook.net/en_US/all.js"></script>
+	<script>
+		FB.init({
+			appId : '190820977620574',
+			cookie : true,
+			status : true,
+			xfbml : true,
+			frictionlessRequests : true
+		});
+
+	</script>
+	<fb:login-button id="fblogin">
+		Login
+	</fb:login-button>
 	<span id="info"></span>
-	<input id="fbLogout" type="button" value="Logout" />
-	<!-- <input type="button" id="sign_in" value="FB-Login"/>
-	<input type="button" id="sign_out"   value="Fb-Logout" /> -->
+	<input id="fbLogout" style="display: none" type="button" value="Logout" />
+	<div id="fbmessage-block" style="display: none">
+		<!-- ​<textarea id="txtArea" rows="10" cols="70"></textarea> -->
+		<br />
+		<label>Message</label>
+		<br />
+		<input id="fbmessage" size="50" value="See my app!" type="text" style="height: 30px">
+	</div>
 	<p>
 		<input type="button" id="sendReqToOne"   value="Send Request to One User" />
 		<input type="text" value="100000834216060" name="user_id" />
@@ -67,7 +86,7 @@
 <div>
 	<h1>LinkedIn</h1>
 	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-api_key: 75pt6583279pqw
+api_key: 778kk3lzc4nf17
 onLoad: onLinkedInLoad
 authorize: true
 credentials_cookie: true
@@ -80,13 +99,25 @@ scope: r_fullprofile r_network rw_nus rw_groups r_contactinfo w_messages
 		</script>
 		<input id="in_logout" style="display: none" type="button" onclick="linkedinLogout(); return false;"  value="Logout" />
 	</p>
+	<div>
+		<div id="profiles"></div>
+		<div id="sendMessageForm"></div>
+		<div id="linkedinmessage_container" style="display: none">
+			<label>Subject</label>
+			<br />
+			<input id="subject" size="30" style="height: 15px" value="Hello" type="text">
+			<br />
+			<label>Message</label>
+			<br />
+			<input id="message" size="50" style="height: 30px" value="You are awesome!" type="text">
+		</div>
+		<div id="sendMessageResult"></div>
+	</div>
 	<p>
-		<input type="button" onclick="onLinkedInMessiging(); return false;"  value="Send Specific message to self" />
-		<input type="button" onclick="invitationBody(); return false;"  value="invitationBody (message to some people)" />
+		<input type="button" onclick="SendMessage(); return false;"  value="Send Specific message to self" />
+		<input type="button" onclick="invitationBody(); return false;" style="display: none" value="invitationBody (message to some people)" />
 	</p>
-	<div id="profiles"></div>
-	<div id="sendMessageForm"></div>
-	<div id="sendMessageResult"></div>
+
 	<p>
 		<input type="button" onclick="friendSelector(); return false;" value="Get Connection / Friend Selector" />
 	</p>
@@ -100,9 +131,7 @@ scope: r_fullprofile r_network rw_nus rw_groups r_contactinfo w_messages
 				<a href="#" id="close">x</a>
 			</div>
 			<div class="body">
-				<ul id="list">
-
-				</ul>
+				<ul id="list"></ul>
 			</div>
 			<div class="footer">
 				<a href="#" id="ok" style="">

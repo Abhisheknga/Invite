@@ -2,8 +2,9 @@ function onLinkedInLoad() {
      IN.Event.on(IN, "auth", onLinkedInAuth);
 }
   function onLinkedInAuth() {
-     IN.API.Profile("me").fields("id","firstName", "lastName", "industry","pictureUrl").result(displayProfiles).error(displayProfilesErrors);;
+     //IN.API.Profile("me").fields("id","firstName", "lastName", "industry","pictureUrl").result(displayProfiles).error(displayProfilesErrors);;
      $('#in_logout').show();
+     $('#linkedinmessage_container').show();
 }
 function displayProfiles(profiles) {
 	console.log(profiles);
@@ -72,12 +73,16 @@ IN.API.Raw('/people/~/mailbox')
 }
 
 function onLinkedInMessiging() {
+	$(this).hide();
      // After they've signed-in, print a form to enable keyword searching
      var div = document.getElementById("sendMessageForm");
 
-     div.innerHTML = '<h2>Send a Message To Yourself</h2>';
+     div.innerHTML = '<h3>Send a Message To Yourself</h3>';
      div.innerHTML += '<form action="javascript:SendMessage();">' +
-                  '<input id="message" size="30" value="You are awesome!" type="text">' +
+     			  '<label>Subject</label>'+'<br />'+
+                  '<input id="subject" size="30" style="height: 15px" value="Hello" type="text">' +'<br />'+
+     			  '<label>Message</label>'+'<br />'+
+                  '<input id="message" size="50" style="height: 30px" value="You are awesome!" type="text">' +
                   '<input type="submit" value="Send Message!" /></form>';
  }
  
@@ -86,6 +91,7 @@ function onLinkedInMessiging() {
      // On success, call displayMessageSent(); On failure, do nothing.
  
      var message = document.getElementById('message').value; 
+     var subject = document.getElementById('subject').value;
      var BODY = {
         "recipients": {
            "values": [{
@@ -94,7 +100,7 @@ function onLinkedInMessiging() {
              }
            }]
          },
-       "subject": "JSON POST from JSAPI",
+       "subject": subject,
        "body": message
      };
 
@@ -108,7 +114,12 @@ function onLinkedInMessiging() {
  function displayMessageSent(response) {
   console.log(response);
      var div = document.getElementById("sendMessageResult");
-      div.innerHTML += "Yay!";
+      div.innerHTML = "Message Sent";
+ }
+ function displayMessageSent2(response) {
+  console.log(response);
+     var div = document.getElementById("sendMessageResult");
+      div.innerHTML = "All Message Sent";
  }
 function displayError (error) {
   console.log(error);
@@ -116,6 +127,7 @@ function displayError (error) {
 function linkedinLogout (e) {
   if(IN.User.isAuthorized()){
   	IN.User.logout(callbackFunction);
+  	$('#linkedinmessage_container').hide();
   }
 }
 function callbackFunction (back) {
@@ -174,6 +186,8 @@ function itemSelected (item) {
 function SendMultipleMessage(keywords) {
   selectedContacts.forEach(function(contact) {
     console.log(contact);
+    var message = document.getElementById('message').value; 
+     var subject = document.getElementById('subject').value;
     var BODY = {
         "recipients": {
            "values": [{
@@ -182,13 +196,13 @@ function SendMultipleMessage(keywords) {
              }
            }]
          },
-       "subject": "xiffe",
-       "body": "http://xiffe.com/"
+       "subject": subject,
+       "body": message,
      };
      IN.API.Raw("/people/~/mailbox")
            .method("POST")
            .body(JSON.stringify(BODY)) 
-           .result(displayMessageSent)
+           .result(displayMessageSent2)
            .error(displayError);
   });  
  }
@@ -202,6 +216,6 @@ function SendMultipleMessage(keywords) {
     $("#list_container").fadeOut(100);
     console.log(selectedContacts);
     
-    //SendMultipleMessage();
+    SendMultipleMessage();
   });
 });
