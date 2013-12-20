@@ -1,0 +1,98 @@
+#list_container {
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    z-index: 100;
+    margin: 0px;
+}
+#list_container>div {
+	background-color: rgb(66, 149, 195); 
+	width: 500px; 
+	margin: auto; 
+	margin-top: 50px; 
+	border: 5px solid rgba(0, 0, 0, 0.5); 
+	border-radius: 5px;
+}
+#list_container div.header {
+	height: 33px;
+	margin: 10px;
+}
+#list_container div.header>h2 {
+	float:left;
+	margin: 0px;
+}
+#list_container div.header>a {
+	float: right;
+	color: white;
+	font-size: 25px;
+	text-decoration: none;
+}
+#list_container div.body {
+	width: 500px;
+	margin: auto;
+	margin-top: 0px;
+	max-height: 400px;
+	overflow-y: auto;
+}
+#list_container div.footer {
+	background-color: rgb(197, 216, 226);
+	height: 40px;
+}
+#list_container div.footer>a {
+	float: right;
+	color: white;
+	font-size: 18px;
+	text-decoration: none;
+}
+#list_container div.footer>a>div {
+	width: 68px;
+	height: 30px;
+	background-color: rgb(66, 149, 195);
+	margin-top: 5px;
+	text-align: center;
+	margin-right: 5px;
+	line-height: 35px;
+}
+#list_container ul { 
+  list-style:none; 
+  width:auto; 
+  text-align:center; 
+  text-transform:capitalize;
+  margin-bottom:2px;
+  margin-top:2px;
+  margin-left:-40px;
+  }
+#list_container li {
+  height:56px;
+  background-color:#FFFFFF;
+  margin:3px;
+  font-size:24px;
+}
+#list_container li.active {
+	background-color:#DDDDDD;
+}
+#list_container li>div {
+  padding: 3px;
+}
+#list_container li>div>img {
+  float: left;
+  width: 50px;
+  height: 50px;
+  font-size: 10px;
+  line-height: 50px;
+}
+#list_container li>div>span {
+  float: left;
+  margin-left: 10px;
+  line-height: 50px;
+}
+#list_container li>div>span.select_friend {
+    float: right;
+    font-size: 15px;
+    margin-right: 10px;
+    display: none;
+}
+#list_container li:hover>div>span.select_friend {
+    display: block;
+}
