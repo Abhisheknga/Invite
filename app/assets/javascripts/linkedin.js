@@ -2,7 +2,6 @@ function onLinkedInLoad() {
      IN.Event.on(IN, "auth", onLinkedInAuth);
 }
   function onLinkedInAuth() {
-     //IN.API.Profile("me").fields("id","firstName", "lastName", "industry","pictureUrl").result(displayProfiles).error(displayProfilesErrors);;
      $('#in_logout').show();
      $('#linkedinmessage_container').show();
 }
@@ -43,28 +42,6 @@ function invitationBody (argument) {
   "subject": "Congratulations on your new position.",
   "body": "You are certainly the best person for the job!"
 };
-
-  // var BODY={
- // "recipients": {
-   // "values": [{
-     // "person": {
-       // "_path": "/people/QrEcDN1kWs",
-      // }
-   // }]
- // },
- // "subject": "JSON POST test",
- // "body": "You rule",
- // // "item-content": {
-        // // "invitation-request": {
-                // // "connect-type":"friend",
-                // // "authorization": {
-                        // // "name":"OUT_OF_NETWORK",
-                        // // "value":"aOfX"
-             // // }
-         // // }
-   // // }
-// };
-
 IN.API.Raw('/people/~/mailbox')
            .method('POST')
            .body(JSON.stringify(BODY)) 
@@ -74,7 +51,6 @@ IN.API.Raw('/people/~/mailbox')
 
 function onLinkedInMessiging() {
 	$(this).hide();
-     // After they've signed-in, print a form to enable keyword searching
      var div = document.getElementById("sendMessageForm");
 
      div.innerHTML = '<h3>Send a Message To Yourself</h3>';
@@ -87,8 +63,6 @@ function onLinkedInMessiging() {
  }
  
  function SendMessage(keywords) {
-     // Call the Message sending API with the viewer's message
-     // On success, call displayMessageSent(); On failure, do nothing.
  
      var message = document.getElementById('message').value; 
      var subject = document.getElementById('subject').value;

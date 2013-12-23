@@ -1,19 +1,6 @@
 <div>
 	<h1>Facebook</h1>
 	<div id="fb-root"></div>
-	<!-- <div class="fb-login-button" data-max-rows="1" data-show-faces="false"></div>
-	<script>
-	( function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id))
-	return;
-	js = d.createElement(s);
-	js.id = id;
-	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=190820977620574";
-	fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	</script> -->
-
 	<script src="http://connect.facebook.net/en_US/all.js"></script>
 	<script>
 		FB.init({
@@ -31,7 +18,6 @@
 	<span id="info"></span>
 	<input id="fbLogout" style="display: none" type="button" value="Logout" />
 	<div id="fbmessage-block" style="display: none">
-		<!-- ​<textarea id="txtArea" rows="10" cols="70"></textarea> -->
 		<br />
 		<label>Message</label>
 		<br />
@@ -80,7 +66,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- <script src="/JS/example.js"></script> -->
 	<script src="/JS/instance.js"></script>
 </div>
 <div>
@@ -100,8 +85,6 @@ scope: r_fullprofile r_network rw_nus rw_groups r_contactinfo w_messages
 		<input id="in_logout" style="display: none" type="button" onclick="linkedinLogout(); return false;"  value="Logout" />
 	</p>
 	<div>
-		<div id="profiles"></div>
-		<div id="sendMessageForm"></div>
 		<div id="linkedinmessage_container" style="display: none">
 			<label>Subject</label>
 			<br />
