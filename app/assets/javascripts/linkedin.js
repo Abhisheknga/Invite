@@ -128,6 +128,7 @@ function linkedinLogout (e) {
   if(IN.User.isAuthorized()){
   	IN.User.logout(callbackFunction);
   	$('#linkedinmessage_container').hide();
+  	$('#in_logout').fadeOut(500);
   }
 }
 function callbackFunction (back) {
